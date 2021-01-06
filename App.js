@@ -7,13 +7,14 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import { Tab } from './App/navigator/Tab';
+import Tab from './App/navigator/Tab';
 
 
-const App: () => React$Node = () => {
+
+const App=()=>{
   return (
     <>
-    <Tab/>
+      <Tab/>
     </>
   );
 };
