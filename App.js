@@ -7,15 +7,16 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import { Provider } from 'react-redux';
+
 import Tab from './App/navigator/Tab';
-
-
+import store from './App/reducers/store'
 
 const App=()=>{
   return (
-    <>
+    <Provider store={store}>
       <Tab/>
-    </>
+    </Provider>
   );
 };
 
