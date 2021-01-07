@@ -1,26 +1,30 @@
-import React,{useEffect} from 'react'
-import {Text} from 'react-native';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchGetMovies } from '../reducers/apiReducer';
-
+import React, {useEffect} from 'react';
+import {ScrollView,View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import MoviesEntry from '../components/MoviesEntry';
+import {fetchGetMovies} from '../reducers/apiReducer';
 
 const HomeScreen = () => {
 
-     const dispatch = useDispatch();
-    const {movieTickets} = useSelector( state => state.Api );
+  const dispatch = useDispatch();
+  const {movieTickets} = useSelector((state) => state.Api);
 
-    useEffect(() => {
-      dispatch(fetchGetMovies());
-     },[dispatch])
+  useEffect(() => {
+    dispatch(fetchGetMovies());
+  }, [dispatch]);
 
-    return (
-        <>
-            <Text>HomeScreen</Text>
-            {movieTickets.map((post) => (
-                <Text>{post.title}</Text>
-            ))}
-        </>
-    )
-}
+  return (
+
+    <View>
+      <ScrollView>
+        {movieTickets.map((movie) => (
+          <MoviesEntry key={movie.title}
+          {...movie}/>
+        ))}
+      </ScrollView>
+    </View>
+
+  );
+};
 
 export default HomeScreen;
