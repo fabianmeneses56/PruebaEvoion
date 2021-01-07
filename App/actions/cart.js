@@ -4,3 +4,8 @@ export const addItemToCart = (title, price, genre) => ({
     payload:{title,price,genre}
     
 })
+export const removeItem = (product) => ({
+    type:'REMOVE_FROM_CART',
+    payload:product
+    
+})
