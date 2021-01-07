@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   Card,
@@ -10,21 +10,28 @@ import {
 } from 'react-native-material-cards';
 
 const CartScreen = () => {
+  const cart = useSelector((state) => state.Cart);
+  console.log(cart);
 
-  const state = useSelector((state) => state.Cart);
-  
   return (
     <>
-      {state.map((movie) => (
-        <Card>
-          <CardTitle title={movie} />
-          <CardContent text={'Genre: '} />
-          <CardContent text={'price:'} />
-          <CardAction separator={true} inColumn={false}>
-            <CardButton onPress={() => {}} title="delete" color="blue" />
-          </CardAction>
-        </Card>
-      ))}
+      <View style={{flex: 2, backgroundColor: 'red'}}>
+        <ScrollView>
+          {cart.map((movie) => (
+            <Card>
+              <CardTitle title={movie.title} />
+               <CardContent text={movie.price} />
+              <CardAction separator={true} inColumn={false}>
+                <CardButton onPress={() => {}} title="delete" color="blue" />
+              </CardAction>
+            </Card>
+          ))}
+        </ScrollView>
+      </View>
+      <View style={{flex: 1}}>
+        <Text>total Items: {cart.length}</Text>
+        <Text>total Payment</Text>
+      </View>
     </>
   );
 };

@@ -18,7 +18,7 @@ const MoviesEntry = ({_id,title,price,genre}) => {
 
     const addItem = () => {
      
-     dispatch(addItemToCart(title))
+     dispatch(addItemToCart(title,price,genre))
       };
 
   return (
