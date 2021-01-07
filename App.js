@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
 import { Provider } from 'react-redux';
 
 import Tab from './App/navigator/Tab';

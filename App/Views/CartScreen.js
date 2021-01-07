@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import CartEntry from '../components/CartEntry';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch, useSelector} from 'react-redux';
+
+import CartEntry from '../components/CartEntry';
 import {cleanItem} from '../actions/cart';
 
 const CartScreen = () => {
@@ -26,7 +27,7 @@ const CartScreen = () => {
 
   return (
     <>
-      <View style={{flex: 2, backgroundColor: 'red'}}>
+      <View style={{flex: 2, backgroundColor: 'grey'}}>
         {cart.length > 0 ? (
           <ScrollView>
             {cart.map((movie) => (

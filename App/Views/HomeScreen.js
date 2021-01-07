@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {ScrollView,View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+
 import { fetchGetMovies } from '../actions/apiActions';
 import MoviesEntry from '../components/MoviesEntry';
 
