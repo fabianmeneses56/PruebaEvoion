@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 //app-reducers
 import apiReducer from './apiReducer'
+import cartReducer from './cartReducer'
 
 
 const mainReducer = combineReducers({
-    Api: apiReducer
+    Api: apiReducer,
+    Cart:cartReducer
 });
 
 
