@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch,useSelector} from "react-redux";
-import {ScrollView, View} from 'react-native'
+import React, {createRef} from 'react';
+import {useDispatch} from 'react-redux';
+import {Text} from 'react-native';
 import {
   Card,
   CardTitle,
@@ -8,29 +8,42 @@ import {
   CardAction,
   CardButton,
 } from 'react-native-material-cards';
-import { addItemToCart } from '../actions/cart';
+import ActionSheet from 'react-native-actions-sheet';
 
-const MoviesEntry = ({_id,title,price,genre}) => {
+import {addItemToCart} from '../actions/cart';
 
-    const dispatch = useDispatch();
-   /*  const state = useSelector((state) => state.Cart);
-   console.log(state) */
 
-    const addItem = () => {
-     
-     dispatch(addItemToCart(title,price,genre))
-      };
+const actionSheetRef = createRef();
+const MoviesEntry = ({title, price, genre,inventory,date}) => {
 
+  const dispatch = useDispatch();
+  const addItem = () => {
+    dispatch(addItemToCart(title, price, genre));
+  };
+
+  const showActionSheet = () => {
+    actionSheetRef.current?.setModalVisible();
+  };
   return (
+    <>
       <Card>
         <CardTitle title={title} />
-        <CardContent text={"Genre: "+genre} />
-        <CardContent text={"price:"+price} />
+        <CardContent text={'Genre: ' + genre} />
+        <CardContent text={'Price:' + price} />
         <CardAction separator={true} inColumn={false}>
-          <CardButton onPress={() => {}} title="see more" color="blue" />
+          <CardButton onPress={showActionSheet} title="see more" color="blue" />
           <CardButton onPress={addItem} title="buy" color="blue" />
         </CardAction>
       </Card>
+
+      <ActionSheet
+        ref={actionSheetRef}
+        bounceOnOpen={true}
+        bounciness={8}
+        gestureEnabled={true}>
+          <Text>{inventory}</Text>
+      </ActionSheet>
+    </>
   );
 };
 

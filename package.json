@@ -15,6 +15,7 @@
     "@react-navigation/native": "^5.8.10",
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-actions-sheet": "^0.4.2",
     "react-native-gesture-handler": "^1.9.0",
     "react-native-material-cards": "^1.0.15",
     "react-native-reanimated": "^1.13.2",
