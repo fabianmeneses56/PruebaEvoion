@@ -8,6 +8,7 @@ const HomeScreen = () => {
 
   const dispatch = useDispatch();
   const {movieTickets} = useSelector((state) => state.Api);
+  
   useEffect(() => {
     dispatch(fetchGetMovies());
   }, [dispatch]);

@@ -12,10 +12,8 @@ import ActionSheet from 'react-native-actions-sheet';
 
 import {addItemToCart} from '../actions/cart';
 
-
 const actionSheetRef = createRef();
-const MoviesEntry = ({title, price, genre,inventory,date}) => {
-
+const MoviesEntry = ({title, price, genre, inventory, date}) => {
   const dispatch = useDispatch();
   const addItem = () => {
     dispatch(addItemToCart(title, price, genre));
@@ -41,7 +39,14 @@ const MoviesEntry = ({title, price, genre,inventory,date}) => {
         bounceOnOpen={true}
         bounciness={8}
         gestureEnabled={true}>
-          <Text>{inventory}</Text>
+          <Text>MORE INFORMATION </Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            finibus lobortis nibh, ultrices elementum purus porta et. Donec
+            maximus imperdiet libero, volutpat gravida justo mollis nec. Mauris
+            imperdiet blandit accumsan. Sed pellentesque blandit felis, quis
+            facilisis sem suscipit id. Curabitur vulputate neque enim
+          </Text>
       </ActionSheet>
     </>
   );

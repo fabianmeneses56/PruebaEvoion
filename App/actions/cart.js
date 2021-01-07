@@ -9,3 +9,7 @@ export const removeItem = (product) => ({
     payload:product
     
 })
+export const cleanItem = () => ({
+    type:'CLEAN_CART'
+    
+})
