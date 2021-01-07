@@ -20,8 +20,8 @@ const CartEntry = ({_id,title,price,genre}) => {
 
   return (
     <Card>
-    <CardTitle title={title} />
-     <CardContent text={price} />
+    <CardTitle title={'Movie: '+title} />
+     <CardContent text={'Price: '+price} />
     <CardAction separator={true} inColumn={false}>
       <CardButton onPress={remove} title="delete" color="blue" />
     </CardAction>
