@@ -20,7 +20,7 @@ const HomeScreen = () => {
     <View>
       <ScrollView>
         {movieTickets.map((movie) => (
-          <MoviesEntry key={movie.title}
+          <MoviesEntry key={movie._id.$oid}
           {...movie}/>
         ))}
       </ScrollView>

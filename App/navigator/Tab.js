@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux';
 
 const Tab = () => {
     const Tab = createBottomTabNavigator();
-    const cart = useSelector((state) => state.Cart);
+    const {cartItems} = useSelector((state) => state.Cart);
 
   return (
     <NavigationContainer>
@@ -43,7 +43,7 @@ const Tab = () => {
         }}
       >
         <Tab.Screen name="HomeScreen" component={Routes.HomeScreen} />
-        <Tab.Screen name="CartScreen" component={Routes.CartScreen} options={{ tabBarBadge:cart.length }} />
+        <Tab.Screen name="CartScreen" component={Routes.CartScreen} options={{ tabBarBadge:cartItems.length }} />
       </Tab.Navigator>
     </NavigationContainer>
   );

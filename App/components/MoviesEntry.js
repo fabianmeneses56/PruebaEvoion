@@ -13,10 +13,10 @@ import ActionSheet from 'react-native-actions-sheet';
 import {addItemToCart} from '../actions/cart';
 
 const actionSheetRef = createRef();
-const MoviesEntry = ({title, price, genre, inventory, date}) => {
+const MoviesEntry = ({title, price, genre, inventory, date,_id}) => {
   const dispatch = useDispatch();
   const addItem = () => {
-    dispatch(addItemToCart(title, price, genre));
+    dispatch(addItemToCart(title, price, genre,_id));
   };
 
   const showActionSheet = () => {
@@ -26,6 +26,7 @@ const MoviesEntry = ({title, price, genre, inventory, date}) => {
     <>
       <Card>
         <CardTitle title={title} />
+        <CardContent text={'id: '+_id.$oid} />
         <CardContent text={'Genre: ' + genre} />
         <CardContent text={'Price:' + price} />
         <CardAction separator={true} inColumn={false}>

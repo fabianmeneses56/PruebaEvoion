@@ -22,6 +22,7 @@ const CartEntry = ({_id,title,price,genre}) => {
     <Card>
     <CardTitle title={'Movie: '+title} />
      <CardContent text={'Price: '+price} />
+     <CardContent text={'ID: '+_id.$oid} />
     <CardAction separator={true} inColumn={false}>
       <CardButton onPress={remove} title="delete" color="blue" />
     </CardAction>

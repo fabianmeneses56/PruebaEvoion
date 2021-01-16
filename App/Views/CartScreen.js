@@ -13,11 +13,11 @@ import CartEntry from '../components/CartEntry';
 import {cleanItem} from '../actions/cart';
 
 const CartScreen = () => {
-  const cart = useSelector((state) => state.Cart);
+  const {cartItems} = useSelector((state) => state.Cart);
+ /*  console.log(cartItems); */
   const dispatch = useDispatch();
-
   const clean = () => {
-    if (cart.length == 0) {
+    if (cartItems.length == 0) {
       alert('Your cart is empty');
     } else {
       alert('Congratulations Checkout successfull');
@@ -28,10 +28,10 @@ const CartScreen = () => {
   return (
     <>
       <View style={{flex: 2, backgroundColor: 'grey'}}>
-        {cart.length > 0 ? (
+        {cartItems.length > 0 ? (
           <ScrollView>
-            {cart.map((movie) => (
-              <CartEntry key={movie.title} {...movie} />
+            {cartItems.map((movie) => (
+              <CartEntry key={movie._id.$oid} {...movie} />
             ))}
           </ScrollView>
         ) : (
@@ -44,7 +44,7 @@ const CartScreen = () => {
 
       <View style={{flex: 1}}>
         <View style={{margin: 10, borderWidth: 1, padding: 10}}>
-          <Text style={styles.itemsText}>total Items: {cart.length}</Text>
+          <Text style={styles.itemsText}>total Items: {cartItems.length}</Text>
           <Text style={styles.itemsText}>total Payment:</Text>
           <TouchableOpacity style={styles.Touchable} onPress={clean}>
             <Text style={styles.TouchableText}>CHECKOUT</Text>

@@ -1,4 +1,4 @@
-#Getting Started
+# Getting Started
 
 1.clone this repo unto your local maching using the following command git clone 
 https://github.com/fabianmeneses56/PruebaEvoion.git
