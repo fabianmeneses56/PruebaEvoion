@@ -15,7 +15,7 @@ const CartEntry = ({_id,title,price,genre}) => {
     const dispatch = useDispatch();
 
    const remove=()=>{
-    dispatch(removeItem(title))
+    dispatch(removeItem(_id.$oid))
   }
 
   return (

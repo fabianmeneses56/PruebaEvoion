@@ -14,7 +14,13 @@ import {cleanItem} from '../actions/cart';
 
 const CartScreen = () => {
   const {cartItems} = useSelector((state) => state.Cart);
- /*  console.log(cartItems); */
+  const {sumItems} = useSelector((state) => state.Cart);
+
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+  
+   console.log('suma:'+sumItems.reduce(reducer)); 
+
   const dispatch = useDispatch();
   const clean = () => {
     if (cartItems.length == 0) {
@@ -41,11 +47,16 @@ const CartScreen = () => {
           </View>
         )}
       </View>
+      <View>
+      {/* {sumItems.map((price)=>(
+        <Text>{price}</Text>
+      ))} */}
+      </View>
 
       <View style={{flex: 1}}>
         <View style={{margin: 10, borderWidth: 1, padding: 10}}>
           <Text style={styles.itemsText}>total Items: {cartItems.length}</Text>
-          <Text style={styles.itemsText}>total Payment:</Text>
+          <Text style={styles.itemsText}>total Payment:{sumItems.reduce(reducer)}</Text>
           <TouchableOpacity style={styles.Touchable} onPress={clean}>
             <Text style={styles.TouchableText}>CHECKOUT</Text>
           </TouchableOpacity>
