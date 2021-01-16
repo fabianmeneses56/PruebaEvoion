@@ -17,7 +17,8 @@ const cartReducer = (state = initialState, action) => {
         case 'REMOVE_FROM_CART':
             return{
            /*      console.log(state.cartItems), */
-                cartItems: state.cartItems.filter(cartItem => cartItem._id.$oid !== action.payload)
+                cartItems: state.cartItems.filter(cartItem => cartItem._id.$oid !== action.payload.product),
+                sumItems: state.sumItems.filter(cartItemM => cartItemM !== action.payload.price)
             }
         case 'CLEAN_CART':
             return{cartItems:[]} 

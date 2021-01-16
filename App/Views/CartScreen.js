@@ -18,8 +18,11 @@ const CartScreen = () => {
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-  
-   console.log('suma:'+sumItems.reduce(reducer)); 
+  /* console.log(sumItems);
+  console.log(cartItems);  
+    console.log('suma:'+sumItems.reduce(reducer));   */
+const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue,0)
+console.log(total)
 
   const dispatch = useDispatch();
   const clean = () => {
@@ -47,21 +50,18 @@ const CartScreen = () => {
           </View>
         )}
       </View>
-      <View>
-      {/* {sumItems.map((price)=>(
-        <Text>{price}</Text>
-      ))} */}
-      </View>
+      
 
-      <View style={{flex: 1}}>
+     {cartItems.length > 0 && 
+     <View style={{flex: 1}}>
         <View style={{margin: 10, borderWidth: 1, padding: 10}}>
           <Text style={styles.itemsText}>total Items: {cartItems.length}</Text>
-          <Text style={styles.itemsText}>total Payment:{sumItems.reduce(reducer)}</Text>
+          <Text style={styles.itemsText}>total Payment:{total}</Text>
           <TouchableOpacity style={styles.Touchable} onPress={clean}>
             <Text style={styles.TouchableText}>CHECKOUT</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View>}
     </>
   );
 };
