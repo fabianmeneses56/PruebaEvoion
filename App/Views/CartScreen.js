@@ -16,13 +16,14 @@ const CartScreen = () => {
   const {cartItems} = useSelector((state) => state.Cart);
   const {sumItems} = useSelector((state) => state.Cart);
 
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
+
+   
   /* console.log(sumItems);
-  console.log(cartItems);  
     console.log('suma:'+sumItems.reduce(reducer));   */
-const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue,0)
-console.log(total)
+  const itemCount = cartItems.reduce((total, product) => total + product.counter, 0);
+  const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue,0)
+console.log(itemCount)
 
   const dispatch = useDispatch();
   const clean = () => {

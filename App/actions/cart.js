@@ -1,7 +1,7 @@
-export const addItemToCart = (title, price, genre,_id) => ({
+export const addItemToCart = (title, price, genre,_id,counter) => ({
    
     type:'ADD_TO_CART',
-    payload:{title,price,genre,_id}
+    payload:{title,price,genre,_id,counter}
     
 })
 export const removeItem = (product,price) => ({
