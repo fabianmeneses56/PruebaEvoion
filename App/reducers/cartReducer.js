@@ -29,7 +29,8 @@ const cartReducer = (state = initialState, action) => {
         
       };
     case 'REMOVE_FROM_CART':
-      return {...state,
+      return {
+          ...state,
         /*      console.log(state.cartItems), */
         cartItems: state.cartItems.filter(
           (cartItem) => cartItem._id.$oid !== action.payload.product,
@@ -38,6 +39,13 @@ const cartReducer = (state = initialState, action) => {
           (cartItemM) => cartItemM !== action.payload.price,
         ),
       };
+    case 'INCREASE':
+        console.log(action.payload);
+        return{
+             ...state,
+            cartItems:state.cartItems.filter((cardItem)=>cardItem.title === action.payload.title),
+            quantity:state.quantity+1
+        };
     case 'CLEAN_CART':
       return {cartItems: []};
   }

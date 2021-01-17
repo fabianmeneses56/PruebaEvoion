@@ -4,6 +4,12 @@ export const addItemToCart = (title, price, genre,_id) => ({
     payload:{title,price,genre,_id}
     
 })
+export const increaseMovie = (title) => ({
+   
+    type:'INCREASE',
+    payload:{title}
+    
+})
 export const removeItem = (product,price) => ({
     type:'REMOVE_FROM_CART',
     payload:{product,price}

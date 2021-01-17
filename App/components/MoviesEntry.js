@@ -1,5 +1,5 @@
 import React, {createRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {
   Card,
@@ -9,22 +9,35 @@ import {
   CardButton,
 } from 'react-native-material-cards';
 
-import {addItemToCart} from '../actions/cart';
+import {addItemToCart,increaseMovie} from '../actions/cart';
 import {useCounter} from '../hooks/useCounter';
 import ActionSheetCom from './ActionSheet';
 
 const actionSheetRef = createRef();
 const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
+
   const dispatch = useDispatch();
+
   const addItem = () => {
     dispatch(addItemToCart(title, price, genre, _id));
+  };
+
+  const increase = () =>{
+  /*   dispatch(increase(_id)); */
+  dispatch(increaseMovie(title))
+  
+/*   console.log('hola') */
   };
 
   const showActionSheet = () => {
     actionSheetRef.current?.setModalVisible();
   };
 
+  const {cartItems} = useSelector( state => state.Cart );
  
+  const isInCart = () => {
+    return !!cartItems.find(item => item._id.$oid === _id.$oid);
+}
   return (
     <>
       <Card>
@@ -35,7 +48,13 @@ const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
         <CardContent text={'inventory:' + inventory} />
         <CardAction separator={true} inColumn={false}>
           <CardButton onPress={showActionSheet} title="see more" color="blue" />
-          <CardButton onPress={addItem} title="buy" color="blue" />
+          {!isInCart() && 
+            <CardButton onPress={addItem} title="buy" color="blue" />
+          }
+          {
+            isInCart() && 
+            <CardButton onPress={increase} title="Add More" color="red" />
+          }
         </CardAction>
       </Card>
 

@@ -23,7 +23,7 @@ const CartScreen = () => {
     console.log('suma:'+sumItems.reduce(reducer));   */
     const itemCount = cartItems.reduce((total, product) => total + quantity, 0);
  /*   console.log(itemCount);   */
-  const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue,0)
+  const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue*quantity,0)
 /* console.log(itemCount) */
 
   const dispatch = useDispatch();
