@@ -15,15 +15,16 @@ import {cleanItem} from '../actions/cart';
 const CartScreen = () => {
   const {cartItems} = useSelector((state) => state.Cart);
   const {sumItems} = useSelector((state) => state.Cart);
+  const {quantity} = useSelector((state) => state.Cart);
+  /*  console.log(cartItems)
 
-
-
-   
-  /* console.log(sumItems);
+  console.log(sumItems); */
+  /*
     console.log('suma:'+sumItems.reduce(reducer));   */
-  const itemCount = cartItems.reduce((total, product) => total + product.counter, 0);
+    const itemCount = cartItems.reduce((total, product) => total + quantity, 0);
+ /*   console.log(itemCount);   */
   const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue,0)
-console.log(itemCount)
+/* console.log(itemCount) */
 
   const dispatch = useDispatch();
   const clean = () => {
@@ -41,7 +42,7 @@ console.log(itemCount)
         {cartItems.length > 0 ? (
           <ScrollView>
             {cartItems.map((movie) => (
-              <CartEntry key={movie._id.$oid} {...movie} />
+              <CartEntry key={movie._id.$oid} quantity={quantity} {...movie} />
             ))}
           </ScrollView>
         ) : (
@@ -56,7 +57,7 @@ console.log(itemCount)
      {cartItems.length > 0 && 
      <View style={{flex: 1}}>
         <View style={{margin: 10, borderWidth: 1, padding: 10}}>
-          <Text style={styles.itemsText}>total Items: {cartItems.length}</Text>
+          <Text style={styles.itemsText}>total Items: {itemCount}</Text>
           <Text style={styles.itemsText}>total Payment:{total}</Text>
           <TouchableOpacity style={styles.Touchable} onPress={clean}>
             <Text style={styles.TouchableText}>CHECKOUT</Text>

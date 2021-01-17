@@ -10,7 +10,7 @@ import {
 import { removeItem } from '../actions/cart';
 
 
-const CartEntry = ({_id,title,price,genre,counter}) => {
+const CartEntry = ({_id,title,price,genre,quantity}) => {
 
     const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const CartEntry = ({_id,title,price,genre,counter}) => {
     <CardTitle title={'Movie: '+title} />
      <CardContent text={'Price: '+price} />
      <CardContent text={'ID: '+_id.$oid} />
-     <CardContent text={'counter: '+counter} />
+     <CardContent text={'quantity: '+quantity} />
     <CardAction separator={true} inColumn={false}>
       <CardButton onPress={remove} title="delete" color="blue" />
     </CardAction>

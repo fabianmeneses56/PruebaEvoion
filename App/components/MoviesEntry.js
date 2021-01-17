@@ -17,14 +17,14 @@ const actionSheetRef = createRef();
 const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
   const dispatch = useDispatch();
   const addItem = () => {
-    dispatch(addItemToCart(title, price, genre, _id, counter));
+    dispatch(addItemToCart(title, price, genre, _id));
   };
 
   const showActionSheet = () => {
     actionSheetRef.current?.setModalVisible();
   };
 
-  const {counter, increment, decrement, reset} = useCounter(1);
+ 
   return (
     <>
       <Card>
@@ -33,31 +33,6 @@ const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
         <CardContent text={'Genre: ' + genre} />
         <CardContent text={'Price:' + price} />
         <CardContent text={'inventory:' + inventory} />
-        <CardContent>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-            }}>
-            {counter > 1 && (
-              <TouchableOpacity
-                style={{borderWidth: 1, padding: 10}}
-                onPress={decrement}>
-                <Text style={{fontSize: 30}}>-</Text>
-              </TouchableOpacity>
-            )}
-            <Text>{counter}</Text>
-            {counter < inventory && (
-              <TouchableOpacity
-                style={{borderWidth: 1, padding: 10}}
-                onPress={increment}>
-                <Text style={{fontSize: 30}}>+</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        </CardContent>
         <CardAction separator={true} inColumn={false}>
           <CardButton onPress={showActionSheet} title="see more" color="blue" />
           <CardButton onPress={addItem} title="buy" color="blue" />
