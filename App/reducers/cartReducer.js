@@ -18,7 +18,6 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: [...state.cartItems],
         sumItems: [action.payload.price, ...state.sumItems],
-       /*  quantity: 1, */
       };
     case 'REMOVE_FROM_CART':
       return {
@@ -31,15 +30,13 @@ const cartReducer = (state = initialState, action) => {
         ),
       };
     case 'INCREASE':
+      state.cartItems[state.cartItems.findIndex(item => item._id.$oid === action.payload._id.$oid)].quantity++
       return {
         ...state,
-        cartItems: state.cartItems.filter(
-          (cardItem) => cardItem._id.$oid === action.payload._id.$oid
-        ),
-        quantity: state.quantity + 1,
+        cartItems:[...state.cartItems]
       };
     case 'CLEAN_CART':
-      return {cartItems: []};
+      return {cartItems: [],sumItems:[]};
   }
 
   return state;

@@ -15,8 +15,6 @@ import {cleanItem} from '../actions/cart';
 const CartScreen = () => {
   const {cartItems} = useSelector((state) => state.Cart);
   const {sumItems} = useSelector((state) => state.Cart);
-  const {quantity} = useSelector((state) => state.Cart);
-  console.log(quantity);
 
   const itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
  
@@ -39,7 +37,7 @@ const CartScreen = () => {
         {cartItems.length > 0 ? (
           <ScrollView>
             {cartItems.map((movie) => (
-              <CartEntry key={movie._id.$oid} quantity={quantity} movie={movie} />
+              <CartEntry key={movie._id.$oid} movie={movie} />
             ))}
           </ScrollView>
         ) : (

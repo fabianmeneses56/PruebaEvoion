@@ -10,7 +10,7 @@ import {
 import { removeItem } from '../actions/cart';
 
 
-const CartEntry = ({movie,quantity}) => {
+const CartEntry = ({movie}) => {
 console.log(movie)
     const dispatch = useDispatch();
 
