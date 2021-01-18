@@ -41,15 +41,15 @@ const cartReducer = (state = initialState, action) => {
       };
     case 'INCREASE':
         console.log(action.payload);
-       
+      /*   state.cartItems.filter((cardItem)=>cardItem._id.$oid === action.payload._id.$oid?action.payload:cardItem); */
         return{
              ...state,
-          /*    cardItems:state.cartItems.map((item)=>item.title === action.payload.title?quantity:state.quantity+1:item) */
-            cartItems:state.cartItems.filter((cardItem)=>cardItem.title === action.payload.title?action.payload:cardItem),
+            cartItems: state.cartItems.filter((cardItem)=>cardItem._id.$oid === action.payload._id.$oid?action.payload:cardItem),
             quantity:state.quantity+1
         };
     case 'CLEAN_CART':
       return {cartItems: []};
+    
   }
 
   return state;
