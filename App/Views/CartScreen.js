@@ -16,15 +16,12 @@ const CartScreen = () => {
   const {cartItems} = useSelector((state) => state.Cart);
   const {sumItems} = useSelector((state) => state.Cart);
   const {quantity} = useSelector((state) => state.Cart);
-  /*  console.log(cartItems)
+  console.log(quantity);
 
-  console.log(sumItems); */
-  /*
-    console.log('suma:'+sumItems.reduce(reducer));   */
-    const itemCount = cartItems.reduce((total, product) => total + quantity, 0);
- /*   console.log(itemCount);   */
-  const total=sumItems.reduce((accumulator, currentValue)=>accumulator + currentValue*quantity,0)
-/* console.log(itemCount) */
+  const itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
+ 
+  const total=cartItems.reduce((accumulator, currentValue)=>accumulator + currentValue.price*currentValue.quantity,0)
+
 
   const dispatch = useDispatch();
   const clean = () => {
@@ -42,7 +39,7 @@ const CartScreen = () => {
         {cartItems.length > 0 ? (
           <ScrollView>
             {cartItems.map((movie) => (
-              <CartEntry key={movie._id.$oid} quantity={quantity} {...movie} />
+              <CartEntry key={movie._id.$oid} quantity={quantity} movie={movie} />
             ))}
           </ScrollView>
         ) : (

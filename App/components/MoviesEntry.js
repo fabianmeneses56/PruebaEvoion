@@ -23,10 +23,7 @@ const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
   };
 
   const increase = () =>{
-  /*   dispatch(increase(_id)); */
   dispatch(increaseMovie(title, price, genre, _id))
-  
-/*   console.log('hola') */
   };
 
   const showActionSheet = () => {
@@ -35,9 +32,11 @@ const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
 
   const {cartItems} = useSelector( state => state.Cart );
  
-  const isInCart = (_id) => {
+  const isInCart = () => {
     return !!cartItems.find(item => item._id.$oid === _id.$oid);
 }
+
+
   return (
     <>
       <Card>
@@ -48,11 +47,11 @@ const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
         <CardContent text={'inventory:' + inventory} />
         <CardAction separator={true} inColumn={false}>
           <CardButton onPress={showActionSheet} title="see more" color="blue" />
-          {!isInCart(_id) && 
+          {!isInCart() && 
             <CardButton onPress={addItem} title="buy" color="blue" />
           }
           {
-            isInCart(_id) && 
+            isInCart() && 
             <CardButton onPress={increase} title="Add More" color="red" />
           }
         </CardAction>

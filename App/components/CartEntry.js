@@ -10,20 +10,20 @@ import {
 import { removeItem } from '../actions/cart';
 
 
-const CartEntry = ({_id,title,price,genre,quantity}) => {
-
+const CartEntry = ({movie,quantity}) => {
+console.log(movie)
     const dispatch = useDispatch();
 
    const remove=()=>{
-    dispatch(removeItem(_id.$oid,price))
+    dispatch(removeItem(movie._id.$oid,movie.price))
   }
 
   return (
     <Card>
-    <CardTitle title={'Movie: '+title} />
-     <CardContent text={'Price: '+price} />
-     <CardContent text={'ID: '+_id.$oid} />
-     <CardContent text={'quantity: '+quantity} />
+    <CardTitle title={'Movie: '+movie.title} />
+     <CardContent text={'Price: '+movie.price} />
+     <CardContent text={'ID: '+movie._id.$oid} />
+     <CardContent text={'quantity: '+movie.quantity} />
     <CardAction separator={true} inColumn={false}>
       <CardButton onPress={remove} title="delete" color="blue" />
     </CardAction>
