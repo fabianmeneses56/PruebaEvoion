@@ -41,9 +41,11 @@ const cartReducer = (state = initialState, action) => {
       };
     case 'INCREASE':
         console.log(action.payload);
+       
         return{
              ...state,
-            cartItems:state.cartItems.filter((cardItem)=>cardItem.title === action.payload.title),
+          /*    cardItems:state.cartItems.map((item)=>item.title === action.payload.title?quantity:state.quantity+1:item) */
+            cartItems:state.cartItems.filter((cardItem)=>cardItem.title === action.payload.title?action.payload:cardItem),
             quantity:state.quantity+1
         };
     case 'CLEAN_CART':
