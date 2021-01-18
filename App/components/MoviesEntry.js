@@ -1,4 +1,4 @@
-import React, {createRef} from 'react';
+import React, {createRef,useState} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {
@@ -14,16 +14,19 @@ import {useCounter} from '../hooks/useCounter';
 import ActionSheetCom from './ActionSheet';
 
 const actionSheetRef = createRef();
-const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
+const MoviesEntry = ({movie}) => {
+
+  const [counter, setcounter] = useState(1)
 
   const dispatch = useDispatch();
 
   const addItem = () => {
-    dispatch(addItemToCart(title, price, genre, _id));
+    dispatch(addItemToCart(movie));
   };
 
   const increase = () =>{
-  dispatch(increaseMovie(title, price, genre, _id))
+    setcounter(counter+1)
+  dispatch(increaseMovie(movie))
   };
 
   const showActionSheet = () => {
@@ -31,28 +34,33 @@ const MoviesEntry = ({title, price, genre, inventory, date, _id}) => {
   };
 
   const {cartItems} = useSelector( state => state.Cart );
- 
-  const isInCart = () => {
-    return !!cartItems.find(item => item._id.$oid === _id.$oid);
-}
 
+  const itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
+
+  const isInCart = () => {
+    return !!cartItems.find(item => item._id.$oid === movie._id.$oid);
+}
 
   return (
     <>
       <Card>
-        <CardTitle title={title} />
-        <CardContent text={'id: ' + _id.$oid} />
-        <CardContent text={'Genre: ' + genre} />
-        <CardContent text={'Price:' + price} />
-        <CardContent text={'inventory:' + inventory} />
+        <CardTitle title={movie.title} />
+        <CardContent text={'id: ' + movie._id.$oid} />
+        <CardContent text={'Genre: ' + movie.genre} />
+        <CardContent text={'Price:' + movie.price} />
+        <CardContent text={'inventory:' + movie.inventory} />
         <CardAction separator={true} inColumn={false}>
           <CardButton onPress={showActionSheet} title="see more" color="blue" />
           {!isInCart() && 
             <CardButton onPress={addItem} title="buy" color="blue" />
           }
           {
-            isInCart() && 
+            isInCart() && counter<movie.inventory &&
             <CardButton onPress={increase} title="Add More" color="red" />
+          }
+          {
+          counter>=movie.inventory &&
+           <Text>only {movie.inventory} tickets for this movie</Text>
           }
         </CardAction>
       </Card>

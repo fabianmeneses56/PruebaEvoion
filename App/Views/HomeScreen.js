@@ -10,7 +10,6 @@ const HomeScreen = () => {
 
   const dispatch = useDispatch();
   const {movieTickets} = useSelector((state) => state.Api);
-  
   useEffect(() => {
     dispatch(fetchGetMovies());
   }, [dispatch]);
@@ -21,7 +20,7 @@ const HomeScreen = () => {
       <ScrollView>
         {movieTickets.map((movie) => (
           <MoviesEntry key={movie._id.$oid}
-          {...movie}/>
+          movie={movie}/>
         ))}
       </ScrollView>
     </View>

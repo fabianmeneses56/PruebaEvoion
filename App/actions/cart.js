@@ -1,13 +1,13 @@
-export const addItemToCart = (title, price, genre,_id) => ({
+export const addItemToCart = (movie) => ({
    
     type:'ADD_TO_CART',
-    payload:{title,price,genre,_id}
+    payload:movie
     
 })
-export const increaseMovie = (title, price, genre,_id) => ({
+export const increaseMovie = (movie) => ({
    
     type:'INCREASE',
-    payload:{title,price,genre,_id}
+    payload:movie
     
 })
 export const removeItem = (product,price) => ({
