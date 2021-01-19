@@ -1,8 +1,12 @@
 import React from 'react'
 import { Text ,StyleSheet,View,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
-const CheckoutComponent = ({navigation}) => {
+const CheckoutComponent = () => {
+
+    const navigation = useNavigation();
+
     return (
         <View>
           <Text style={{textAlign: 'center', color: 'green'}}>
