@@ -19,3 +19,6 @@ export const cleanItem = () => ({
     type:'CLEAN_CART'
     
 })
+export const handleCheckout = () => ({
+  type: 'CHECKOUT'
+})

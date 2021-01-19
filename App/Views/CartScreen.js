@@ -8,13 +8,17 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
+import { useNavigation } from '@react-navigation/native'
 
 import CartEntry from '../components/CartEntry';
-import {cleanItem} from '../actions/cart';
+import {cleanItem,handleCheckout} from '../actions/cart';
 
 const CartScreen = () => {
   const {cartItems} = useSelector((state) => state.Cart);
   const {sumItems} = useSelector((state) => state.Cart);
+  const {checkout} = useSelector((state) => state.Cart);
+
+  const navigation = useNavigation()
 
   const itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
  
@@ -26,8 +30,15 @@ const CartScreen = () => {
     if (cartItems.length == 0) {
       alert('Your cart is empty');
     } else {
-      alert('Congratulations Checkout successfull');
       dispatch(cleanItem());
+    }
+  };
+
+  const check = () => {
+    if (cartItems.length == 0) {
+      alert('Your cart is empty');
+    } else {
+      return dispatch(handleCheckout());
     }
   };
 
@@ -48,15 +59,30 @@ const CartScreen = () => {
         )}
       </View>
       
-
+          {
+            checkout &&
+            <View>
+              <Text style={{textAlign: 'center',color:'green'}}>Checkout successfull</Text>
+              <Icon style={{textAlign: 'center'}} name="checkmark-done" color="green" size={150} />
+              <TouchableOpacity style={styles.Touchable} onPress={()=>navigation.navigate('HomeScreen')}>
+                <Text style={styles.TouchableText}>BUY MORE</Text>
+              </TouchableOpacity>
+          </View>
+          }
      {cartItems.length > 0 && 
      <View style={{flex: 1}}>
-        <View style={{margin: 10, borderWidth: 1, padding: 10}}>
+        <View style={{margin: 10, borderWidth: 1, padding: 10,display:'flex'}}>
           <Text style={styles.itemsText}>total Items: {itemCount}</Text>
           <Text style={styles.itemsText}>total Payment:{total}</Text>
-          <TouchableOpacity style={styles.Touchable} onPress={clean}>
-            <Text style={styles.TouchableText}>CHECKOUT</Text>
-          </TouchableOpacity>
+          <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
+            <TouchableOpacity style={styles.Touchable} onPress={check}>
+              <Text style={styles.TouchableText}>CHECKOUT</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.TouchableClean} onPress={clean}>
+              <Text style={styles.TouchableText}>CLEAN</Text>
+            </TouchableOpacity>
+          </View>
+          
         </View>
       </View>}
     </>
@@ -67,7 +93,12 @@ const styles = StyleSheet.create({
   Touchable: {
     marginTop: 10,
     backgroundColor: 'green',
-    display: 'flex',
+   
+  },
+  TouchableClean: {
+    marginTop: 10,
+    backgroundColor: 'black',
+   
   },
   TouchableText: {
     color: 'white',

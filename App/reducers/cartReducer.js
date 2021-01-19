@@ -1,7 +1,7 @@
 const initialState = {
   cartItems: [],
   sumItems: [],
-  check: false,
+  checkout: false,
   quantity: 0,
 };
 
@@ -18,6 +18,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: [...state.cartItems],
         sumItems: [action.payload.price, ...state.sumItems],
+        checkout: false,
       };
     case 'REMOVE_FROM_CART':
       return {
@@ -35,8 +36,17 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems:[...state.cartItems]
       };
+    case 'CHECKOUT':
+      return{
+        cartItems: [],
+        sumItems:[],
+        checkout:true
+      };
     case 'CLEAN_CART':
-      return {cartItems: [],sumItems:[]};
+      return {
+        cartItems: [],
+        sumItems:[]
+      };
   }
 
   return state;

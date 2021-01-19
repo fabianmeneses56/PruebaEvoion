@@ -10,13 +10,11 @@ import {
 } from 'react-native-material-cards';
 
 import {addItemToCart,increaseMovie} from '../actions/cart';
-import {useCounter} from '../hooks/useCounter';
 import ActionSheetCom from './ActionSheet';
 
 const actionSheetRef = createRef();
 const MoviesEntry = ({movie}) => {
 
-  const [counter, setcounter] = useState(1)
 
   const dispatch = useDispatch();
 
@@ -25,7 +23,6 @@ const MoviesEntry = ({movie}) => {
   };
 
   const increase = () =>{
-    setcounter(counter+1)
   dispatch(increaseMovie(movie))
   };
 
@@ -55,13 +52,10 @@ const MoviesEntry = ({movie}) => {
             <CardButton onPress={addItem} title="buy" color="blue" />
           }
           {
-            isInCart() && counter<movie.inventory &&
+            isInCart() && 
             <CardButton onPress={increase} title="Add More" color="red" />
           }
-          {
-          counter>=movie.inventory &&
-           <Text>only {movie.inventory} tickets for this movie</Text>
-          }
+        
         </CardAction>
       </Card>
 
