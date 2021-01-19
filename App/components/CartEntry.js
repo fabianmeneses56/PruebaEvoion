@@ -11,7 +11,6 @@ import { removeItem } from '../actions/cart';
 
 
 const CartEntry = ({movie}) => {
-console.log(movie)
     const dispatch = useDispatch();
 
    const remove=()=>{
@@ -20,13 +19,13 @@ console.log(movie)
 
   return (
     <Card>
-    <CardTitle title={'Movie: '+movie.title} />
-     <CardContent text={'Price: '+movie.price} />
-     <CardContent text={'ID: '+movie._id.$oid} />
-     <CardContent text={'quantity: '+movie.quantity} />
-    <CardAction separator={true} inColumn={false}>
-      <CardButton onPress={remove} title="delete" color="blue" />
-    </CardAction>
+      <CardTitle title={'Movie: '+movie.title} />
+      <CardContent text={'Price: '+movie.price} />
+      <CardContent text={'ID: '+movie._id.$oid} />
+      <CardContent text={'quantity: '+movie.quantity} />
+      <CardAction separator={true} inColumn={false}>
+        <CardButton onPress={remove} title="delete" color="blue" />
+      </CardAction>
   </Card>
   );
 };

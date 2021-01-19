@@ -12,11 +12,11 @@ import {
 import {addItemToCart,increaseMovie} from '../actions/cart';
 import ActionSheetCom from './ActionSheet';
 
-const actionSheetRef = createRef();
 const MoviesEntry = ({movie}) => {
-
-
+  
+  const actionSheetRef = createRef();
   const dispatch = useDispatch();
+  const {cartItems} = useSelector( state => state.Cart );
 
   const addItem = () => {
     dispatch(addItemToCart(movie));
@@ -29,9 +29,7 @@ const MoviesEntry = ({movie}) => {
   const showActionSheet = () => {
     actionSheetRef.current?.setModalVisible();
   };
-
-  const {cartItems} = useSelector( state => state.Cart );
-
+  
   const itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
 
   const isInCart = () => {
