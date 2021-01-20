@@ -28,7 +28,7 @@ const HomeScreen = () => {
     <View>
       {
         (show)
-        ?<Text style={{fontSize:25}}>cargando</Text>
+        ?<Text style={{fontSize:25}}>LOADING...</Text>
         :<ScrollView>
         {movieTickets.map((movie) => (
           <MoviesEntry key={movie._id.$oid}

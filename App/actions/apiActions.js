@@ -23,10 +23,6 @@ const setItemsCurrentPage = page => ({
     payload: page,
     type: 'SET_ITEMS_CURRENT_PAGE',
 });
-
-
-/* const getMovieTickets = (movies) => ({ type: 'GET_MOVIETICKETS', payload: movies }); */
-
 export const fetchGetMovies = (page) => {
     return (dispatch,getState) => {
 

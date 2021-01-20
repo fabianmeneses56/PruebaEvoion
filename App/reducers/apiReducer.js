@@ -1,5 +1,3 @@
-/* import {apiGet} from '../Api/api'; */
-
 const initialState = {
   movieTickets: [],
   show:false,
