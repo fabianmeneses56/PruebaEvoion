@@ -1,9 +1,9 @@
-const BASEURL = "https://us-central1-bonsai-interview-endpoints.cloudfunctions.net/movieTickets?skip=0&limit=10";
+const BASEURL = "https://us-central1-bonsai-interview-endpoints.cloudfunctions.net";
 
 
-export const apiGet = () => {
+export const apiGet = ({page, limit }) => {
 
-    const url = BASEURL;
+    const url = BASEURL+ `/movieTickets?skip=${page}&limit=${limit}`;
 
     return fetch(url)
         .then(response => response.json());

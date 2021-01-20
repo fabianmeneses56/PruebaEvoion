@@ -1,29 +1,49 @@
 import React, {useEffect} from 'react';
-import {ScrollView,View} from 'react-native';
+import {ScrollView,View, Text,TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import { fetchGetMovies } from '../actions/apiActions';
 import MoviesEntry from '../components/MoviesEntry';
+import PaginationComponent from '../components/PaginationComponent';
 
 
 const HomeScreen = () => {
 
   const dispatch = useDispatch();
-  const {movieTickets} = useSelector((state) => state.Api);
+  const {movieTickets,show,currentPage} = useSelector((state) => state.Api);
+
   useEffect(() => {
-    dispatch(fetchGetMovies());
+    dispatch(fetchGetMovies(currentPage));
   }, [dispatch]);
 
+  const handleNext=()=>{
+    dispatch(fetchGetMovies(currentPage + 1));
+  }
+  const handlePrevius=()=>{
+    dispatch(fetchGetMovies(currentPage - 1));
+  }
+  
   return (
 
     <View>
-      <ScrollView>
+      {
+        (show)
+        ?<Text style={{fontSize:25}}>cargando</Text>
+        :<ScrollView>
         {movieTickets.map((movie) => (
           <MoviesEntry key={movie._id.$oid}
           movie={movie}/>
         ))}
-      </ScrollView>
+        <PaginationComponent 
+        onNext={handleNext}
+        onPrevius={handlePrevius}
+        itemsCurrentPage={currentPage}
+        />
+      </ScrollView> 
+      }
+           
     </View>
+    
 
   );
 };
